@@ -1,37 +1,32 @@
 .block {
     background: #fff;
-    border: 1px solid #999;
     float: left;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 34px;
-    height: 34px;
-    margin-right: -1px;
-    margin-top: -1px;
+    height: 23px;
     padding: 0;
-    text-align: center;
-    width: 34px;
+    width: 23px;
+    margin-bottom: 2px;
+    margin-left: 2px;
 }
 .i-shape {
-    background: aqua;
+    background: #4eb0d0;
 }
 .o-shape {
-    background: yellow;
+    background: #f8cf47;
 }
 .l-shape {
-    background: orange;
+    background: #ef8232;
 }
 .j-shape {
-    background: blue;
+    background: #4285F4;
 }
 .t-shape {
-    background: deeppink;
+    background: #e23f92;
 }
 .s-shape {
-    background: green;
+    background: #4ca730;
 }
 .z-shape{
-    background: red;
+    background: #eb3d25;
 }
 .shape{
 
