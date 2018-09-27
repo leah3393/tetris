@@ -1,41 +1,31 @@
 import React from 'react';
-import Shape, {Block} from '../model/shape'
+import {StaticShape} from '../model/shape'
 import './layout.css'
+import {Grid} from "./grid";
 
 export class Layout extends React.Component {
     render(){
         return (
            <div className="game-board">
-               <div className="main-window">
-                   {/*<Shape name="i"/>
-                   <Shape name="j"/>
-                   <Shape name="t"/>
-                   <Shape name="o"/>
-                   <Shape name="l"/>
-                   <Shape name="s"/>
-                   <Shape name="z"/>*/}
-                   {Layout.renderBlockGrid(10,18)}
-               </div>
+               <Grid blockColors={this.props.state.blockColors}/>
                <div className="right-window">
                    <div className="hold-block-window">
-                       <Shape name="z"/>
+                       <StaticShape name={this.props.state.holdBlock}/>
                    </div>
                    <div className="next-block-window">
-                       <Shape name="z"/>
+                       <StaticShape name={this.props.state.nextBlock}/>
                    </div>
-                   <div className="current-level"/>
-                   <div className="lines"/>
-                   <div className="score"/>
+                   <div className="current-level">
+                       {"Level: "+this.props.state.currentLevel}
+                   </div>
+                   <div className="lines">
+                       {"Lines: "+this.props.state.lines}
+                   </div>
+                   <div className="score">
+                       {"Score: "+this.props.state.score}
+                   </div>
                </div>
             </div>
         )
-    }
-    static renderBlockGrid(maxX, maxY) {
-        let blocks = [];
-        let size = maxX*maxY;
-        for (let i = 0; i < size; i++) {
-            blocks.push(<Block/>);
-        }
-        return blocks;
     }
 }
