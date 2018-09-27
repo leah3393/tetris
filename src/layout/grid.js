@@ -1,7 +1,7 @@
 import React from 'react';
 import {Block} from '../model/block'
 import './layout.css'
-import {MAX_TOTAL} from "../constants/constants";
+import {MAX_X, MAX_Y} from "../constants/constants";
 
 export class Grid extends React.Component {
     render(){
@@ -13,12 +13,14 @@ export class Grid extends React.Component {
     }
     static renderBlockGrid(blockColors) {
         let blocks = [];
-        for (let i = 0; i < MAX_TOTAL; i++) {
-            let color = blockColors[i];
-            if(color)
-                blocks.push(<Block shape={color + "-shape "}/>);
-            else
-                blocks.push(<Block/>);
+        for (let y = 0; y < MAX_Y; y++) {
+            for(let x = 0; x < MAX_X; x++){
+                let color = blockColors[x+y*MAX_X];
+                if(color)
+                    blocks.push(<Block shape={color + "-shape "}/>);
+                else
+                    blocks.push(<Block/>);
+            }
         }
         return blocks;
     }

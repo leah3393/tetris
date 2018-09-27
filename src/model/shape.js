@@ -16,7 +16,6 @@ export class Shape {
         let shape = shapes.find(s => s.name===name);
         if(!shape){
             let index = Math.floor((Math.random()*shapes.length));
-            console.log(index);
             shape = shapes[index];
         }
         return new Shape(shape.startingCoords,shape.name)

@@ -14,27 +14,22 @@ export class GameController extends React.Component {
     }
     paint(){
         this.setState(prevState => {
-            let newShape = prevState.shape;
-            if(!prevState.shape){
-                newShape = Shape.getShape();
-            }else{
-                if(this.canMoveShapeDown(prevState.shape)) {
-                    newShape = this.moveShapeDown(prevState.shape);
+            let state = State.copy(prevState);
+            if(!prevState.shape || prevState.shape == null){
+                state.shape = Shape.getShape();
+                state.grid = this.createGrid(state.shape,prevState.gutter);
+            }else {
+                let newShape = this.moveShapeDown(prevState.shape);
+                if (!this.isValidMove(newShape.blockCoords,prevState.gutter)) {
+                    state.shape = null;
+                    state.gutter = this.createGrid(prevState.shape, prevState.gutter);
+                    state.grid = state.gutter;
                 }else{
-                    newShape = Shape.getShape();
+                    state.shape = newShape;
+                    state.grid = this.createGrid(newShape,prevState.gutter);
                 }
             }
-            let gutter = prevState.gutter;
-            return ({
-                shape: newShape,
-                grid: this.createGrid(newShape,gutter),
-                score: prevState.score,
-                nextShape: prevState.nextShape,
-                holdShape: prevState.holdShape,
-                lines: prevState.lines,
-                gutter: prevState.gutter,
-                currentLevel: prevState.currentLevel
-            })
+            return (state)
         });
     }
 
@@ -52,11 +47,12 @@ export class GameController extends React.Component {
         blockCoords.forEach(c => blockColors[c] = name);
         return blockColors;
     }
-    canMoveShapeDown(shape){
-        return !shape.blockCoords.find(b => b + MAX_X > MAX_TOTAL);
+    isValidMove(newCoords,gutter){
+        return (!newCoords.find(coord => gutter[coord]) &&
+            !newCoords.find(b => b > MAX_TOTAL));
     }
     moveShapeDown(shape){
-        shape.blockCoords = shape.blockCoords.map(c => c + MAX_X);
-        return shape;
+        let blockCoords = shape.blockCoords.map(c => c + MAX_X);
+        return new Shape(blockCoords,shape.name);
     }
 }

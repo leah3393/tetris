@@ -15,4 +15,9 @@ export class State {
         let grid = Array(MAX_TOTAL).fill(null);
         return new State(grid,STARTING_SCORE,null,null,null,STARTING_LINES,grid,STARTING_LEVEL);
     }
+    static copy(state){
+        return new State(state.grid.slice(),state.score,state.shape,
+            state.nextShape,state.holdShape,state.lines,state.gutter.slice(),
+            state.currentLevel)
+    }
 }
