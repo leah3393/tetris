@@ -27,10 +27,12 @@ export class Shape {
     }
     static getShape(name){
         let shape = shapes.find(s => s.name===name);
-        if(shape){
-            return new Shape(shape.startingCoords,shape.name)
+        if(!shape){
+            let index = Math.floor((Math.random()*shapes.length));
+            console.log(index);
+            shape = shapes[index];
         }
-        else return null;
+        return new Shape(shape.startingCoords,shape.name)
     }
 }
 

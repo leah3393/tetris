@@ -7,13 +7,13 @@ export class Layout extends React.Component {
     render(){
         return (
            <div className="game-board">
-               <Grid blockColors={this.props.state.blockColors}/>
+               <Grid blockColors={this.props.state.grid}/>
                <div className="right-window">
                    <div className="hold-block-window">
-                       <StaticShape name={this.props.state.holdBlock}/>
+                       <StaticShape name={this.props.state.holdShape}/>
                    </div>
                    <div className="next-block-window">
-                       <StaticShape name={this.props.state.nextBlock}/>
+                       <StaticShape name={this.props.state.nextShape}/>
                    </div>
                    <div className="current-level">
                        {"Level: "+this.props.state.currentLevel}
