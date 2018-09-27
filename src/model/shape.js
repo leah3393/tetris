@@ -1,22 +1,9 @@
 import React from 'react';
 import './shape.css';
-import {Block} from "./block";
 
 export class StaticShape extends React.Component{
     render(){
-        let name = this.props.name;
-        if(name){
-            return (
-                <div className="shape">
-                    <Block shape={this.props.name + "-shape "}/>
-                    <Block shape={this.props.name + "-shape "}/>
-                    <Block shape={this.props.name + "-shape "}/>
-                    <Block shape={this.props.name + "-shape "}/>
-                </div>
-            )
-        }else{
-            return (<div/>)
-        }
+        return (<div/>)
     }
 }
 
