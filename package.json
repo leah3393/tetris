@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "arrow-keys-react": "^1.0.6",
     "block": "^0.2.1",
     "layout": "^2.2.0",
     "react": "^16.5.2",
