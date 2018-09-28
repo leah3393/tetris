@@ -2,7 +2,8 @@ import React from 'react';
 import {Layout} from "../layout/layout";
 import {State} from "../model/state";
 import {Shape} from "../model/shape";
-import {MAX_TOTAL, MAX_X} from "../constants/constants";
+import {MAX_X, MAX_Y, MIN_X, MIN_Y, X, Y} from "../constants/constants";
+import {copy} from "../utils/arrayUtils";
 
 export class GameController extends React.Component {
     constructor(props){
@@ -20,7 +21,7 @@ export class GameController extends React.Component {
                 state.grid = this.createGrid(state.shape,prevState.gutter);
             }else {
                 let newShape = this.moveShapeDown(prevState.shape);
-                if (!this.isValidMove(newShape.blockCoords,prevState.gutter)) {
+                if (this.invalidMove(newShape.blockCoords,prevState.gutter)) {
                     state.shape = null;
                     state.gutter = this.createGrid(prevState.shape, prevState.gutter);
                     state.grid = state.gutter;
@@ -42,17 +43,23 @@ export class GameController extends React.Component {
     }
 
     createGrid(shape, gutter) {
-        let blockColors = gutter.slice();
+        let blockColors = copy(gutter);
         let {blockCoords, name} = shape;
-        blockCoords.forEach(c => blockColors[c] = name);
+        blockCoords.forEach(coord => {
+            blockColors[coord[X]][coord[Y]] = name;
+        });
         return blockColors;
     }
-    isValidMove(newCoords,gutter){
-        return (!newCoords.find(coord => gutter[coord]) &&
-            !newCoords.find(b => b > MAX_TOTAL));
+    invalidMove(newCoords, gutter){
+        return (newCoords.find(coord =>
+                (coord[X] >= MAX_X) || (coord[X] < MIN_X) ||
+                (coord[Y] >= MAX_Y) || (coord[Y] < MIN_Y) ||
+                (gutter[coord[X]][coord[Y]])
+            )
+        );
     }
     moveShapeDown(shape){
-        let blockCoords = shape.blockCoords.map(c => c + MAX_X);
+        let blockCoords = shape.blockCoords.map(coord => [coord[X],coord[Y]+1]);
         return new Shape(blockCoords,shape.name);
     }
 }

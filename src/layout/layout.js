@@ -1,13 +1,13 @@
 import React from 'react';
 import {StaticShape} from '../model/shape'
 import './layout.css'
-import {Grid} from "./grid";
+import {GridView} from "./gridView";
 
 export class Layout extends React.Component {
     render(){
         return (
            <div className="game-board">
-               <Grid blockColors={this.props.state.grid}/>
+               <GridView blockColors={this.props.state.grid}/>
                <div className="right-window">
                    <div className="hold-block-window">
                        <StaticShape name={this.props.state.holdShape}/>

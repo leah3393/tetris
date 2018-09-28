@@ -3,11 +3,11 @@ import {Block} from '../model/block'
 import './layout.css'
 import {MAX_X, MAX_Y} from "../constants/constants";
 
-export class Grid extends React.Component {
+export class GridView extends React.Component {
     render(){
         return (
             <div className="main-window">
-                {Grid.renderBlockGrid(this.props.blockColors)}
+                {GridView.renderBlockGrid(this.props.blockColors)}
             </div>
         )
     }
@@ -15,7 +15,7 @@ export class Grid extends React.Component {
         let blocks = [];
         for (let y = 0; y < MAX_Y; y++) {
             for(let x = 0; x < MAX_X; x++){
-                let color = blockColors[x+y*MAX_X];
+                let color = blockColors[x][y];
                 if(color)
                     blocks.push(<Block shape={color + "-shape "}/>);
                 else

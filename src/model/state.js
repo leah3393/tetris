@@ -1,4 +1,5 @@
-import {MAX_TOTAL, STARTING_LEVEL, STARTING_LINES, STARTING_SCORE} from "../constants/constants";
+import {MAX_X, MAX_Y, STARTING_LEVEL, STARTING_LINES, STARTING_SCORE} from "../constants/constants";
+import {copy, create2dArray} from "../utils/arrayUtils";
 
 export class State {
     constructor(grid,score,shape,nextShape,holdShape,lines,gutter,currentLevel){
@@ -12,12 +13,12 @@ export class State {
         this.currentLevel = currentLevel;
     }
     static getDefault(){
-        let grid = Array(MAX_TOTAL).fill(null);
-        return new State(grid,STARTING_SCORE,null,null,null,STARTING_LINES,grid,STARTING_LEVEL);
+        return new State(create2dArray(MAX_X,MAX_Y),STARTING_SCORE,null,null,null,
+            STARTING_LINES,create2dArray(MAX_X,MAX_Y),STARTING_LEVEL);
     }
     static copy(state){
-        return new State(state.grid.slice(),state.score,state.shape,
-            state.nextShape,state.holdShape,state.lines,state.gutter.slice(),
+        return new State(copy(state.grid),state.score,state.shape,
+            state.nextShape,state.holdShape,state.lines,copy(state.gutter),
             state.currentLevel)
     }
 }

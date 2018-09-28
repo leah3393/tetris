@@ -23,11 +23,11 @@ export class Shape {
 }
 
 let shapes = [
-    {name:'i', startingCoords: [3,4,5,6]},
-    {name:'o', startingCoords: [4,5,14,15]},
-    {name:'l', startingCoords: [4,14,24,25]},
-    {name:'j', startingCoords: [5,15,24,25]},
-    {name:'t', startingCoords: [3,4,5,14]},
-    {name:'z', startingCoords: [3,4,14,15]},
-    {name:'s', startingCoords: [5,6,14,15]},
+    {name:'i', startingCoords: [[3,0],[4,0],[5,0],[6,0]]},
+    {name:'o', startingCoords: [[4,0],[5,0],[4,1],[5,1]]},
+    {name:'l', startingCoords: [[4,0],[4,1],[4,2],[5,2]]},
+    {name:'j', startingCoords: [[5,0],[5,1],[4,2],[5,2]]},
+    {name:'t', startingCoords: [[3,0],[4,0],[5,0],[4,1]]},
+    {name:'z', startingCoords: [[3,0],[4,0],[4,1],[5,1]]},
+    {name:'s', startingCoords: [[5,0],[6,0],[4,1],[5,1]]},
 ];
